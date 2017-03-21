@@ -1,4 +1,4 @@
-package arff;
+package code;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
