@@ -42,8 +42,8 @@ public class CSVConv {
 			while((linea = miReader.readLine()) != null){
 				Instance miInstancia;
 				if((linea.length() > 0) && (columnas.length == linea.split("\",\"").length)){
-					String miClase = linea.split("\",\"")[colClase].toLowerCase().replace("'", "").replace("\"", "").replace("\\", "");
-					String miTexto = linea.split("\",\"")[colTexto].toLowerCase().replace("'", "").replace("\"", "").replace("\\", "");
+					String miClase = linea.split("\",\"")[colClase].toLowerCase().replace("'", " ").replace("\"", " ").replace("\\", " ");
+					String miTexto = linea.split("\",\"")[colTexto].toLowerCase().replace("'", " ").replace("\"", " ").replace("\\", " ");
 
 					if(!miClase.toLowerCase().contains("unknown")){
 						miInstancia = new Instance(miClase, miTexto);

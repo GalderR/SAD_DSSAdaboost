@@ -162,7 +162,7 @@ public class FolderConv {
 		charToRemove.add("#");
 
 		for (String string : charToRemove) {
-			res = res.replace(string, "");
+			res = res.replace(string, " ");
 		}
 
 		return res;
