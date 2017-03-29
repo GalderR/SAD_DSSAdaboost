@@ -1,4 +1,4 @@
-package ARFFConv;
+package getARFF;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
