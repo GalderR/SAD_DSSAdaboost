@@ -1,4 +1,4 @@
-package arff2Bow;
+package preprocesamiento.arff2Bow;
 
 import java.util.Timer;
 
@@ -44,7 +44,7 @@ public class ARFF2Bow {
 
 		// Print timer
 		Long tFin = System.currentTimeMillis();
-		System.out.println("Tiempo BOW : " + (tFin - tInicio) / 1000 + " segundos");
+		System.out.println("Tiempo BOW : " + (tFin - tInicio) + " milisegundos");
 
 	}
 

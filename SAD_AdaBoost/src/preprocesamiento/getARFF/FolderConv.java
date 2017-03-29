@@ -1,4 +1,4 @@
-package getARFF;
+package preprocesamiento.getARFF;
 
 import java.io.BufferedReader;
 import java.io.File;
