@@ -17,6 +17,11 @@ public class DataMiningExample {
     	// PREPROCESADO //
 		//////////////////
 		
+    	// Use getARFF
+    	
+    	// Apply arff2Bow
+    	
+    	// Seleccion de atributos
     	Preprocess.AttributeSelect(InstanceConfigurator.myInstances); 	
 		Preprocess.Randomize(InstanceConfigurator.myInstances, 42);
 		

@@ -25,7 +25,7 @@ public class InstanceConfigurator {
 			System.out.println("ERROR: Revisar contenido del fichero de datos: " + path);
 		}
 
-    	myInstances.setClassIndex(myInstances.attribute("class").index());
+    	myInstances.setClassIndex(myInstances.attribute("clase").index());
 		
 		return myInstances;
 		
