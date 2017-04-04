@@ -15,6 +15,7 @@ public class ARFFout {
 	
 	public void generateArff(String outputFile, ArrayList<Instance> misInstancias, ArrayList<String> p_classes){
 		try {
+			outputFile = quitarExtensionArchivo(outputFile);
 			PrintWriter outFile = new PrintWriter(outputFile + ".arff", "UTF-8");
 			outFile.println("%ARFF File generated automatically%");
 			outFile.println("@relation no-idea");
@@ -40,5 +41,10 @@ public class ARFFout {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private String quitarExtensionArchivo(String archivo){
+		String rdo = archivo.substring(0, archivo.length()-4);
+		return rdo;
 	}
 }
