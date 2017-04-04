@@ -1,7 +1,5 @@
 package preprocesamiento.arff2Bow;
 
-import java.util.Timer;
-
 import code.Data;
 import weka.core.Instances;
 import weka.filters.Filter;
@@ -45,6 +43,11 @@ public class ARFF2Bow {
 		// Print timer
 		Long tFin = System.currentTimeMillis();
 		System.out.println("Tiempo BOW : " + (tFin - tInicio) + " milisegundos");
+		
+		// Exportar a ARFF
+		ARFF2BowOut.instance().generateArff("train_bowed", bowTrain);
+		ARFF2BowOut.instance().generateArff("dev_bowed", bowDev);
+		ARFF2BowOut.instance().generateArff("test_bowed", bowTest);
 
 	}
 
