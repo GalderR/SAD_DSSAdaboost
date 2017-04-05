@@ -57,4 +57,10 @@ public class Preprocess {
 		myIns = Filter.useFilter(myIns, filter); 
 
 	}
+	
+	public static Instances headerFixing(Instances pTrain, Instances pArreglar){
+		
+		
+		return null;
+	}
 }
