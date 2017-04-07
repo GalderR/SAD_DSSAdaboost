@@ -46,10 +46,8 @@ public class Data {
 		} catch (IOException e) {
 			System.out.println("Error al cerrar el archivo.");
 		}
-		// Specify which attribute will be used as the class: the last one, in
-		// this case
-		data.setClassIndex(data.numAttributes() - 1);
-		// data.setClass(data.attribute("class"));
+		// Specify which attribute will be used as the class: 
+		data.setClass(data.attribute("clase"));
 		return data;
 	}
 	
