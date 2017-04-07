@@ -66,10 +66,6 @@ public class TfIdf {
 		
 		Instances fixedDev = Preprocess.headerFixing(nominalTrain, nominalDev);
 		Instances fixedTest = Preprocess.headerFixing(nominalTrain, nominalTest);
-		
-		//TODO borrar
-		Instances kk = Data.getData().append(nominalTrain, fixedDev);
-		Data.getData().generateArff(Data.getData().formatearPath(args[0]) + "\\kk.arff", kk);
 
 		// Exportar a ARFF
 		Data.getData().generateArff(Data.getData().formatearPath(args[0]) + "\\trainBOW_FSS_TFIDF.arff", nominalTrain);
