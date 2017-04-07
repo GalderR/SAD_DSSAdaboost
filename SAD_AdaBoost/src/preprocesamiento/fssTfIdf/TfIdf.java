@@ -43,8 +43,8 @@ public class TfIdf {
 		System.out.println("Aplicando Numeric To Nominal...");
 		NumericToNominal filter3 = numericToNominal(sparsedTrain);
 		Instances nominalTrain = Filter.useFilter(bowTrain, filter3);
-		Instances nominalDev = Filter.useFilter(bowDev, filter3);
-		Instances nominalTest = Filter.useFilter(bowTest, filter3);
+		Instances nominalDev = Filter.useFilter(sparsedDev, filter3);
+		Instances nominalTest = Filter.useFilter(sparsedTest, filter3);
 		System.out.println("FIN de Numeric To Nominal...");
 		
 		double idf;
