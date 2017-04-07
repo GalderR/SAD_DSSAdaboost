@@ -1,7 +1,9 @@
 package code;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import weka.core.Instances;
@@ -50,4 +52,17 @@ public class Data {
 		// data.setClass(data.attribute("class"));
 		return data;
 	}
+	
+	public void generateArff(String outputFile, Instances misInstances) throws IOException {
+		//outputFile = quitarExtensionArchivo(outputFile);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+		writer.write(misInstances.toString());
+		writer.flush();
+		writer.close();
+	}
+
+	/*private String quitarExtensionArchivo(String archivo) {
+		String rdo = archivo.substring(0, archivo.length() - 5);
+		return rdo;
+	}*/
 }

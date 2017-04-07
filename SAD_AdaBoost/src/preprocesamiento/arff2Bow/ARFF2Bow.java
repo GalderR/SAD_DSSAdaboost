@@ -45,10 +45,8 @@ public class ARFF2Bow {
 		System.out.println("Tiempo BOW : " + (tFin - tInicio) + " milisegundos");
 
 		// Exportar a ARFF
-		ARFF2BowOut.instance().generateArff(args[0], bowTrain);
-		ARFF2BowOut.instance().generateArff(args[1], bowDev);
-		ARFF2BowOut.instance().generateArff(args[2], bowTest);
-
+		Data.getData().generateArff("trainBowed", bowTrain);
+		Data.getData().generateArff("devBowed", bowDev);
+		Data.getData().generateArff("testBowed", bowTest);
 	}
-
 }
