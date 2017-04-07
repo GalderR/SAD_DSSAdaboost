@@ -2,6 +2,8 @@ package preprocesamiento.getARFF;
 
 import java.util.ArrayList;
 
+import code.Data;
+
 public class ARFFConverter {
 
 	/**
@@ -52,18 +54,18 @@ public class ARFFConverter {
 				dev = FolderConv.instance().getFolderIns(args[2],clases);
 				test = FolderConv.instance().getFolderInsTest(args[3],clases);
 				//creamos los arff
-				ARFFout.instance().generateArff(args[1], train, clases);
-				ARFFout.instance().generateArff(args[2], dev, clases);
-				ARFFout.instance().generateArff(args[3], test, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[1]) + "\\train.arff", train, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[2]) + "\\dev.arff", dev, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[3]) + "\\test.arff", test, clases);
 				break;
 			case "-txt":
 				train = TXTConv.instance().getTXTIns(args[1], clases);
 				dev = TXTConv.instance().getTXTIns(args[2], clases);
 				test = TXTConv.instance().getTXTIns(args[3], clases);
 				//creamos los arff
-				ARFFout.instance().generateArff(args[1], train, clases);
-				ARFFout.instance().generateArff(args[2], dev, clases);
-				ARFFout.instance().generateArff(args[3], test, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[1]) + "\\train.arff", train, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[2]) + "\\dev.arff", dev, clases);
+				ARFFout.instance().generateArff(Data.getData().formatearPath(args[3]) + "\\test.arff", test, clases);
 				break;
 
 			default:
