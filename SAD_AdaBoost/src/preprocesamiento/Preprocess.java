@@ -1,4 +1,4 @@
-package code;
+package preprocesamiento;
 
 import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;

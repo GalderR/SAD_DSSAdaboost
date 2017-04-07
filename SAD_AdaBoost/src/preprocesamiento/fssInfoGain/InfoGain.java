@@ -1,6 +1,6 @@
 package preprocesamiento.fssInfoGain;
 
-import code.Data;
+import preprocesamiento.Data;
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.Ranker;
