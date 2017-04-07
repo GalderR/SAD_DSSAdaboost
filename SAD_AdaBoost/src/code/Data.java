@@ -46,16 +46,14 @@ public class Data {
 		} catch (IOException e) {
 			System.out.println("Error al cerrar el archivo.");
 		}
-		// Specify which attribute will be used as the class: the last one, in
-		// this case
-		data.setClassIndex(data.numAttributes() - 1);
-		// data.setClass(data.attribute("class"));
+		// Specify which attribute will be used as the class
+		data.setClass(data.attribute("clase"));
 		return data;
 	}
 	
 	public void generateArff(String outputFile, Instances misInstances) throws IOException {
 		//outputFile = quitarExtensionArchivo(outputFile);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile+".arff"));
 		writer.write(misInstances.toString());
 		writer.flush();
 		writer.close();
