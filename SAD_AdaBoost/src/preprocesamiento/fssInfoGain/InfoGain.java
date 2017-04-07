@@ -9,7 +9,6 @@ import weka.core.Instances;
 public class InfoGain {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
 		// Cargar los datos
 		Instances train = Data.getData().cargarDatos(args[0]);
 
@@ -22,15 +21,15 @@ public class InfoGain {
 		Long tInicio = System.currentTimeMillis();
 		System.out.println("Aplicando InfoGain...");
 
-		train.setClassIndex(0);
-
+		//InfoGain
 		AttributeSelection as = infoGain(train);
-		train = as.reduceDimensionality(train);
+		Instances infoGainedTrain = as.reduceDimensionality(train);
+		
 		double rank;
-		for (int i = 0; i < train.numAttributes() - 1; i++) {
+		for (int i = 0; i < infoGainedTrain.numAttributes() - 1; i++) {
 			rank = as.rankedAttributes()[i][1];
 			if (rank < 0.006) {
-				train.deleteAttributeAt(i);
+				infoGainedTrain.deleteAttributeAt(i);
 				i--;
 			}
 		}
@@ -39,19 +38,20 @@ public class InfoGain {
 		Long tFin = System.currentTimeMillis();
 		System.out.println("Tiempo BOW : " + (tFin - tInicio) + " milisegundos");
 
+		Data.getData().generateArff(Data.getData().formatearPath(args[0]) + "\\trainBOW_FSS_InfoGain.arff", infoGainedTrain);
 		
 	}
 
 	private static AttributeSelection infoGain(Instances data) throws Exception {
-		weka.attributeSelection.AttributeSelection as = new weka.attributeSelection.AttributeSelection();
+		AttributeSelection as = new AttributeSelection();
 		Ranker r = new Ranker();
 		r.setNumToSelect(-1); //Mantener todos los atributos
-		r.setThreshold(-1.79);//
+		r.setThreshold(Long.MIN_VALUE);//Por defecto se usa este valor
 		r.setGenerateRanking(true);
 		as.setEvaluator(new InfoGainAttributeEval());// InfoGain te da la
-														// informaci󮠤e las
+														// informacion de las
 														// instancias
-		as.setSearch(r);// Ranker las ordena seg򮠬os datos sacados de InfoGain
+		as.setSearch(r);// Ranker las ordena segun�los datos sacados de InfoGain
 		as.SelectAttributes(data);
 		return as;
 	}

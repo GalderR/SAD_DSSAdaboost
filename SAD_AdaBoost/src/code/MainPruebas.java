@@ -46,32 +46,22 @@ public class MainPruebas {
 		Instances sparsedDev = Filter.useFilter(bowDev, filter2);
 		Instances sparsedTest = Filter.useFilter(bowTest, filter2);
 		System.out.println("FIN de Sparse...");
-		/*//Numeric to nominal
+		//Numeric to nominal
 		System.out.println("Aplicando Numeric to nominal...");
 		NumericToNominal ntn = numericToNominal(sparsedTrain);
 		Instances ntnTrain = Filter.useFilter(sparsedTrain, ntn);
 		Instances ntnDev = Filter.useFilter(sparsedDev, ntn);
 		Instances ntnTest = Filter.useFilter(sparsedTest, ntn);
-		System.out.println("FIN del Numeric to nominal...");*/
-		
-		/*Instances ntnTrain = sparsedTrain;
-		Instances ntnDev = sparsedDev;
-		Instances ntnTest = sparsedTest;*/
+		System.out.println("FIN del Numeric to nominal...");
 		
 		//Genera arff con bow
 		//Data.getData().generateArff(path+"trainBowed.arff", ntnTrain);
 		//Data.getData().generateArff(path+"devBowed.arff", ntnDev);
 		//Data.getData().generateArff(path+"testBowed.arff", ntnTest);
 		
-		/*//InfoGain
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Pruebas infogain");
-		System.out.println(ntnTrain.get(1).toString());
+		//InfoGain
 		AttributeSelection as = infoGain(ntnTrain);
-		System.out.println(ntnTrain.get(1).toString());
 		Instances infoGainedTrain = as.reduceDimensionality(ntnTrain);
-		System.out.println(infoGainedTrain.get(1).toString());
 		
 		double rank;
 		for (int i = 0; i < infoGainedTrain.numAttributes() - 1; i++) {
@@ -84,9 +74,9 @@ public class MainPruebas {
 			}
 		}
 		//Genera arff con infogain
-		Data.getData().generateArff(path+"trainInfoGained.arff", infoGainedTrain);
-		Data.getData().generateArff(path+"devInfoGained.arff", ntnDev);
-		//Data.getData().generateArff(path+"testInfoGained.arff", ntnTest);*/
+		//Data.getData().generateArff(path+"trainInfoGained.arff", infoGainedTrain);
+		//Data.getData().generateArff(path+"devInfoGained.arff", ntnDev);
+		//Data.getData().generateArff(path+"testInfoGained.arff", ntnTest);
 		
 		//TDIDF
 		
@@ -165,7 +155,6 @@ public class MainPruebas {
 		Ranker r = new Ranker();
 		r.setNumToSelect(-1); //Mantener todos los atributos
 		r.setThreshold(Long.MIN_VALUE);//Por defecto se usa este valor
-		//r.
 		r.setGenerateRanking(true);
 		as.setEvaluator(new InfoGainAttributeEval());// InfoGain te da la
 														// informacion de las
