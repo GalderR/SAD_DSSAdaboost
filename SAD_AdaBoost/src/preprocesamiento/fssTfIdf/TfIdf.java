@@ -1,7 +1,7 @@
 package preprocesamiento.fssTfIdf;
 
-import code.Data;
-import code.Preprocess;
+import preprocesamiento.Data;
+import preprocesamiento.Preprocess;
 import weka.attributeSelection.CfsSubsetEval;
 import weka.core.Instances;
 import weka.filters.Filter;

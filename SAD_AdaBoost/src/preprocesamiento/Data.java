@@ -1,4 +1,4 @@
-package code;
+package preprocesamiento;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -27,28 +27,28 @@ public class Data {
 
 	// Methods
 	public Instances cargarDatos(String path) throws Exception {
-		// Open the file
-		FileReader fi = null;
+		
+		Instances data = null;
+
 		try {
+			FileReader fi = null;
+			// Open the file
 			fi = new FileReader(path);
+
+			//Load instances
+			data = new Instances(fi);
+			
+			//close the file
+			fi.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: Revisar path del fichero de datos: " + path);
-		}
-		// Load the instances
-		Instances data = null;
-		try {
-			data = new Instances(fi);
 		} catch (IOException e) {
 			System.out.println("ERROR: Revisar contenido del fichero de datos: " + path);
 		}
-		// Close the file
-		try {
-			fi.close();
-		} catch (IOException e) {
-			System.out.println("Error al cerrar el archivo.");
-		}
+		
 		// Specify which attribute will be used as the class: 
 		data.setClass(data.attribute("clase"));
+		
 		return data;
 	}
 	

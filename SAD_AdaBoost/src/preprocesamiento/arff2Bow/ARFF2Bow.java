@@ -1,6 +1,6 @@
 package preprocesamiento.arff2Bow;
 
-import code.Data;
+import preprocesamiento.Data;
 import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.NumericToNominal;

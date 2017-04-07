@@ -1,15 +1,12 @@
-package code;
+package preprocesamiento;
 
-import weka.core.Instances;
-import weka.filters.Filter;
-import weka.filters.SimpleFilter;
-import weka.filters.supervised.attribute.AttributeSelection;
-import weka.filters.unsupervised.attribute.Remove;
-import weka.filters.unsupervised.attribute.Reorder;
-import weka.filters.unsupervised.attribute.Standardize;
-import weka.filters.unsupervised.instance.*;
 import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
+import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.supervised.attribute.AttributeSelection;
+import weka.filters.unsupervised.attribute.Remove;
+import weka.filters.unsupervised.instance.Randomize;
 
 public class Preprocess {
 
