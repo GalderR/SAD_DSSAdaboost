@@ -1,16 +1,13 @@
 package adaboostGetModel;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import Classifiers.AdaBoost;
 import Classifiers.Clasificador;
 import Classifiers.NBayes;
-import weka.core.DenseInstance;
+import code.Data;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
-import weka.core.pmml.jaxbbindings.Application;
 
 public class GetModel {
 
@@ -38,11 +35,8 @@ public class GetModel {
 
 				System.out.println("Inicializando Modelo");
 				//Carga de instancias
-				Instances trainData = new Instances(new FileReader(new File(args[0])));
-				trainData.setClassIndex(trainData.attribute("clase").index());
-
-				Instances devData = new Instances(new FileReader(new File(args[1])));
-				devData.setClassIndex(devData.attribute("clase").index());
+				Instances trainData = Data.getData().cargarDatos(args[0]);
+				Instances devData = Data.getData().cargarDatos(args[1]);
 
 				System.out.print("Construyendo modelo con ");
 				long startTime = System.currentTimeMillis();
