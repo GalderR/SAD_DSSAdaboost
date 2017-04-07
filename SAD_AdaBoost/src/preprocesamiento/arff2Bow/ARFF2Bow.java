@@ -4,6 +4,7 @@ import code.Data;
 import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
+import weka.filters.unsupervised.instance.NonSparseToSparse;
 
 public class ARFF2Bow {
 
@@ -17,36 +18,51 @@ public class ARFF2Bow {
 		/**
 		 * BOW
 		 */
-		// Inicio Timer (cambiar por clase Timer)
+		//Inicio Timer (cambiar por clase Timer)
 		Long tInicio = System.currentTimeMillis();
+		
+		//Bow
 		System.out.println("Aplicando BOW...");
-
-		train.setClassIndex(0);
-		dev.setClassIndex(0);
-		test.setClassIndex(0);
-
-		StringToWordVector filter = new StringToWordVector();
-		filter.setIDFTransform(false);
-		filter.setTFTransform(false);
-		filter.setLowerCaseTokens(true);
-		filter.setOutputWordCounts(true);
-
-		filter.setInputFormat(train);
+		StringToWordVector filter = stringToWordVectorTFIDF(train);
 		Instances bowTrain = Filter.useFilter(train, filter);
-
-		filter.setInputFormat(dev);
 		Instances bowDev = Filter.useFilter(dev, filter);
-
-		filter.setInputFormat(test);
 		Instances bowTest = Filter.useFilter(test, filter);
+		System.out.println("FIN del BOW...");
+		//Sparse
+		System.out.println("Aplicando Sparse...");
+		NonSparseToSparse filter2 = nonSparseToSparse(bowTrain);
+		Instances sparsedTrain = Filter.useFilter(bowTrain, filter2);
+		Instances sparsedDev = Filter.useFilter(bowDev, filter2);
+		Instances sparsedTest = Filter.useFilter(bowTest, filter2);
+		System.out.println("FIN de Sparse...");
 
 		// Print timer
 		Long tFin = System.currentTimeMillis();
 		System.out.println("Tiempo BOW : " + (tFin - tInicio) + " milisegundos");
 
 		// Exportar a ARFF
-		Data.getData().generateArff(Data.getData().formatearPath(args[0]) + "\\train_bowed.arff", bowTrain);
-		Data.getData().generateArff(Data.getData().formatearPath(args[1]) + "\\dev_bowed.arff", bowDev);
-		Data.getData().generateArff(Data.getData().formatearPath(args[2]) + "\\test_bowed.arff", bowTest);
+		Data.getData().generateArff(Data.getData().formatearPath(args[0]) + "\\trainBOW.arff", sparsedTrain);
+		Data.getData().generateArff(Data.getData().formatearPath(args[1]) + "\\devBOW.arff", sparsedDev);
+		Data.getData().generateArff(Data.getData().formatearPath(args[2]) + "\\testBOW.arff", sparsedTest);
+	}
+	
+	private static NonSparseToSparse nonSparseToSparse(Instances data) throws Exception{
+		NonSparseToSparse filter = new NonSparseToSparse();
+		filter.setInputFormat(data);
+		return filter;
+	}
+
+	private static StringToWordVector stringToWordVectorTFIDF(Instances data) throws Exception {
+		StringToWordVector filter = new StringToWordVector();
+		
+		data.setClass(data.attribute("clase"));
+		filter.setIDFTransform(false);
+		filter.setTFTransform(false);
+		filter.setAttributeIndices("1");
+		filter.setLowerCaseTokens(true);
+		filter.setOutputWordCounts(true);
+		filter.setInputFormat(data);
+
+		return filter;
 	}
 }
