@@ -53,16 +53,16 @@ public class Data {
 		return data;
 	}
 	
-	public void generateArff(String outputFile, Instances misInstances) throws IOException {
-		//outputFile = quitarExtensionArchivo(outputFile);
+	public void generateArff(String outputFile, Instances misInstances, int numeroAEliminar) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 		writer.write(misInstances.toString());
 		writer.flush();
 		writer.close();
 	}
 
-	/*private String quitarExtensionArchivo(String archivo) {
-		String rdo = archivo.substring(0, archivo.length() - 5);
-		return rdo;
-	}*/
+	public String formatearPath(String path) {
+		int pos = path.lastIndexOf("\\");
+		path = path.substring(0,pos) ;
+		return path;
+	}
 }
