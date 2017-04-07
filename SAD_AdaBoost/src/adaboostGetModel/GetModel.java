@@ -5,7 +5,7 @@ import java.io.IOException;
 import Classifiers.AdaBoost;
 import Classifiers.Clasificador;
 import Classifiers.NBayes;
-import code.Data;
+import preprocesamiento.Data;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
 

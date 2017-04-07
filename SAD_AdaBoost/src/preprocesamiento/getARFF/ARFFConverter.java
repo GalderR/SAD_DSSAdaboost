@@ -2,7 +2,7 @@ package preprocesamiento.getARFF;
 
 import java.util.ArrayList;
 
-import code.Data;
+import preprocesamiento.Data;
 
 public class ARFFConverter {
 

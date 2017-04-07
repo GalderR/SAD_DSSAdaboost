@@ -1,4 +1,4 @@
-package code;
+package preprocesamiento;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
