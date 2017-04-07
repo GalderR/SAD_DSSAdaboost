@@ -51,7 +51,7 @@ public class Data {
 		return data;
 	}
 	
-	public void generateArff(String outputFile, Instances misInstances, int numeroAEliminar) throws IOException {
+	public void generateArff(String outputFile, Instances misInstances) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 		writer.write(misInstances.toString());
 		writer.flush();
