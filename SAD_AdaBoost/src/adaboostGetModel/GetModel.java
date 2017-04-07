@@ -5,7 +5,7 @@ import java.io.IOException;
 import Classifiers.AdaBoost;
 import Classifiers.Clasificador;
 import Classifiers.NBayes;
-import code.Data;
+import preprocesamiento.Data;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
 
@@ -27,7 +27,7 @@ public class GetModel {
 			System.out.println("\t-AD Adaboost de Naive Bayes con Discretizacion Supervisada");
 			System.out.println("Si no se especifica ningun clasificador, o es erroneo, se usará por defecto el parametro -AB");
 			System.out.println("El modelo generado se creará como nombre_del_clasificador.model");
-			System.out.println("En caso de usar el flsg -F se realizará la evaluacion no honesta y 10 fold cross validation con el clasificador indicado y los datos de train");
+			System.out.println("En caso de usar el flag -F se realizará la evaluacion no honesta y 10 fold cross validation");
 		}else{
 
 			try {
@@ -42,6 +42,10 @@ public class GetModel {
 				long startTime = System.currentTimeMillis();
 
 				if(args.length >= 4){classifier = args[3];}
+
+				if(args.length == 5 && args[4].equals("-F")){
+					trainData = Data.getData().append(trainData, devData);
+				}
 
 				switch (classifier) {
 				case "-NB":
@@ -106,11 +110,11 @@ public class GetModel {
 					System.out.println("10-crossfold Validation");
 					Clasificador.crossValidate(trainData, 10);
 				}else{
-					System.out.println("Evaluando Clasificador");
+					System.out.print("Evaluando Clasificador");
 					Clasificador.evaluate(devData);	
 					//Creamos el archivo binario con el modelo
-					SerializationHelper.write(args[2] + classifier + ".model", AdaBoost.getClassifier());
-					System.out.println("Modelo correctamente generado en " + args[2] + classifier + ".model");
+					SerializationHelper.write(args[2] + "\\" + classifier + ".model", AdaBoost.getClassifier());
+					System.out.println("Modelo correctamente generado en " + args[2] + "\\" + classifier + ".model");
 				}
 
 
