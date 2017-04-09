@@ -1,4 +1,4 @@
-package preprocesamiento.fssInfoGain;
+package fssInfoGain;
 
 import preprocesamiento.Data;
 import weka.attributeSelection.AttributeSelection;

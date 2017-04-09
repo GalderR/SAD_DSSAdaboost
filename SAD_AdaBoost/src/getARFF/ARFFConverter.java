@@ -1,8 +1,6 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 import java.util.ArrayList;
-
-import preprocesamiento.Data;
 
 public class ARFFConverter {
 
@@ -19,7 +17,6 @@ public class ARFFConverter {
 	 * first column is the class (ham,spam) the second column is the text
 	 * 
 	 */
-
 
 	public static void main(String[] args) throws Exception {
 
@@ -43,7 +40,7 @@ public class ARFFConverter {
 					ARFFout.instance().generateArff(args[4], dev, clases);
 					ARFFout.instance().generateArff(args[5], test, clases);
 				}else{
-					System.out.println("Par·metros incorrectos, ejemplos:\n"
+					System.out.println("Par√°metros incorrectos, ejemplos:\n"
 							+ "java -jar ARFFConverter -txt /ruta/al/train.txt /ruta/al/dev.txt /ruta/al/test.txt\n\n"
 							+ "java -jar ARFFConverter -csv Sentiment TweetText /ruta/al/train.csv /ruta/al/dev.csv /ruta/al/test.csv"
 							+ "java -jar ARFFConverter -folder /ruta/a/train /ruta/a/dev /ruta/a/test");
@@ -54,23 +51,25 @@ public class ARFFConverter {
 				dev = FolderConv.instance().getFolderIns(args[2],clases);
 				test = FolderConv.instance().getFolderInsTest(args[3],clases);
 				//creamos los arff
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[1]) + "\\train.arff", train, clases);
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[2]) + "\\dev.arff", dev, clases);
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[3]) + "\\test.arff", test, clases);
+				ARFFout.instance().generateArff(args[1], train, clases);
+				ARFFout.instance().generateArff(args[2], dev, clases);
+				ARFFout.instance().generateArff(args[3], test, clases);
 				break;
 			case "-txt":
 				train = TXTConv.instance().getTXTIns(args[1], clases);
 				dev = TXTConv.instance().getTXTIns(args[2], clases);
 				test = TXTConv.instance().getTXTIns(args[3], clases);
 				//creamos los arff
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[1]) + "\\train.arff", train, clases);
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[2]) + "\\dev.arff", dev, clases);
-				ARFFout.instance().generateArff(Data.getData().formatearPath(args[3]) + "\\test.arff", test, clases);
+				ARFFout.instance().generateArff(args[1], train, clases);
+				ARFFout.instance().generateArff(args[2], dev, clases);
+				ARFFout.instance().generateArff(args[3], test, clases);
 				break;
 
 			default:
 				break;
 			}
+
+
 
 		}else{
 			System.out.println("Par·metros incorrectos, ejemplos:\n"
@@ -80,6 +79,35 @@ public class ARFFConverter {
 		}
 	}
 
+	public static String filtrarCaracteres(String frase){
+
+		String res = frase;
+
+		ArrayList<String> charToRemove = new ArrayList<String>();
+
+		charToRemove.add(",");
+		charToRemove.add(".");
+		charToRemove.add("/");
+		charToRemove.add("\"");
+		charToRemove.add("*");
+		charToRemove.add("-");
+		charToRemove.add("_");
+		charToRemove.add("\\");
+		charToRemove.add("&");
+		charToRemove.add("%");
+		charToRemove.add("$");
+		charToRemove.add("#");
+		charToRemove.add("!");
+		charToRemove.add("?");
+		charToRemove.add(":");
+		charToRemove.add("'");
+
+		for (String string : charToRemove) {
+			res = res.replace(string, " ");
+		}
+
+		return res;
+	}
 
 
 }

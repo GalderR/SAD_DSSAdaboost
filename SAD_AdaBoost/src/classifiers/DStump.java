@@ -1,4 +1,4 @@
-package Classifiers;
+package classifiers;
 
 import weka.classifiers.Classifier;
 import weka.classifiers.trees.DecisionStump;

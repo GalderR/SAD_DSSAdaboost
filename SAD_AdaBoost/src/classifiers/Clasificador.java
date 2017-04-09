@@ -1,4 +1,4 @@
-package Classifiers;
+package classifiers;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,8 +42,8 @@ public class CSVConv {
 			while((linea = miReader.readLine()) != null){
 				Instance miInstancia;
 				if((linea.length() > 0) && (columnas.length == linea.split("\",\"").length)){
-					String miClase = linea.split("\",\"")[colClase].toLowerCase().replace("'", " ").replace("\"", " ").replace("\\", " ");
-					String miTexto = linea.split("\",\"")[colTexto].toLowerCase().replace("'", " ").replace("\"", " ").replace("\\", " ");
+					String miClase = ARFFConverter.filtrarCaracteres(linea.split("\",\"")[colClase].toLowerCase());
+					String miTexto = ARFFConverter.filtrarCaracteres(linea.split("\",\"")[colTexto].toLowerCase());
 
 					if(!miClase.toLowerCase().contains("unknown")){
 						miInstancia = new Instance(miClase, miTexto);

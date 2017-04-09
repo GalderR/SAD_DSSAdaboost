@@ -1,4 +1,4 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 public class Instance {
 	private  String clase;

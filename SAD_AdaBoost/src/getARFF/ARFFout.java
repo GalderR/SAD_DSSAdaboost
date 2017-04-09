@@ -1,7 +1,8 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class ARFFout {
@@ -14,8 +15,7 @@ public class ARFFout {
 	
 	public void generateArff(String outputFile, ArrayList<Instance> misInstancias, ArrayList<String> p_classes){
 		try {
-			//outputFile = quitarExtensionArchivo(outputFile);
-			PrintWriter outFile = new PrintWriter(outputFile);
+			PrintWriter outFile = new PrintWriter(outputFile + ".arff", "UTF-8");
 			outFile.println("%ARFF File generated automatically%");
 			outFile.println("@relation no-idea");
 			outFile.println("@attribute text string");
@@ -35,15 +35,10 @@ public class ARFFout {
 			}
 			
 			outFile.close();
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-	
-	/*private String quitarExtensionArchivo(String archivo){
-		String rdo = archivo.substring(0, archivo.length()-4);
-		return rdo;
-	}*/
 }

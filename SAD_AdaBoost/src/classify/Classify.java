@@ -1,4 +1,4 @@
-package adaboostClassify;
+package classify;
 
 import java.io.File;
 import java.io.FileReader;

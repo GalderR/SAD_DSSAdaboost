@@ -1,4 +1,4 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,12 +28,12 @@ public class TXTConv {
 				Instance miInstancia;
 
 				if(linea.split("\t").length >1){
-					miInstancia = new Instance(linea.split("\t")[0], linea.split("\t")[1].replace("'", " ").replace("\"", " "));
+					miInstancia = new Instance(linea.split("\t")[0], ARFFConverter.filtrarCaracteres(linea.split("\t")[1]));
 					if(!clases.contains(linea.split("\t")[0].toLowerCase())){
 						clases.add(linea.split("\t")[0].toLowerCase());
 					}
 				}else{
-					miInstancia = new Instance("?", linea.replace("'", " ").replace("\"", " "));
+					miInstancia = new Instance("?", ARFFConverter.filtrarCaracteres(linea));
 				}
 				misInstancias.add(miInstancia);
 			}

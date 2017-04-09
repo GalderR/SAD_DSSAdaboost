@@ -1,4 +1,4 @@
-package preprocesamiento.arff2Bow;
+package arff2Bow;
 
 import preprocesamiento.Data;
 import weka.core.Instances;

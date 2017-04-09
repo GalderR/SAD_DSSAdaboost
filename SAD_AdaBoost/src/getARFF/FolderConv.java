@@ -1,4 +1,4 @@
-package preprocesamiento.getARFF;
+package getARFF;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,7 +34,7 @@ public class FolderConv {
 			listaDicc.close();
 
 		} catch (FileNotFoundException e1) {
-			System.out.println("No se encontró un fichero de palabras dicc.txt");
+			System.out.println("No se encontrÃ³ un fichero de palabras dicc.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,7 +99,7 @@ public class FolderConv {
 						linea = linea.toLowerCase();
 
 						//Filtramos caracteres raros
-						linea = filtrarCaracteres(linea);
+						linea = ARFFConverter.filtrarCaracteres(linea);
 
 						//Si existe el diccionario lo usamos y eliminamos las palabras
 						if (existeDicc)
@@ -139,32 +139,4 @@ public class FolderConv {
 
 	}
 
-	private String filtrarCaracteres(String frase){
-
-		String res = frase;
-
-		ArrayList<String> charToRemove = new ArrayList<String>();
-
-		//charToRemove.add("'");
-		//charToRemove.add("`");
-		//charToRemove.add("'");
-		charToRemove.add(",");
-		charToRemove.add(".");
-		charToRemove.add("/");
-		charToRemove.add("\"");
-		charToRemove.add("*");
-		charToRemove.add("-");
-		charToRemove.add("_");
-		charToRemove.add("\\");
-		charToRemove.add("&");
-		charToRemove.add("%");
-		charToRemove.add("$");
-		charToRemove.add("#");
-
-		for (String string : charToRemove) {
-			res = res.replace(string, " ");
-		}
-
-		return res;
-	}
 }

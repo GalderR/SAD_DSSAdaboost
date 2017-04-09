@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import weka.core.Instance;
 import weka.core.Instances;
 
 public class Data {
@@ -37,17 +36,18 @@ public class Data {
 
 			//Load instances
 			data = new Instances(fi);
+			// Specify which attribute will be used as the class:
+			data.setClass(data.attribute("clase"));
 			
 			//close the file
 			fi.close();
+
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: Revisar path del fichero de datos: " + path);
+			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("ERROR: Revisar contenido del fichero de datos: " + path);
 		}
-		
-		// Specify which attribute will be used as the class: 
-		data.setClass(data.attribute("clase"));
 		
 		return data;
 	}

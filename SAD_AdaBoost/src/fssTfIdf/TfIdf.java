@@ -1,11 +1,9 @@
-package preprocesamiento.fssTfIdf;
+package fssTfIdf;
 
 import preprocesamiento.Data;
 import preprocesamiento.Preprocess;
-import weka.attributeSelection.CfsSubsetEval;
 import weka.core.Instances;
 import weka.filters.Filter;
-import weka.filters.supervised.attribute.AttributeSelection;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.NonSparseToSparse;
@@ -48,7 +46,6 @@ public class TfIdf {
 		System.out.println("FIN de Numeric To Nominal...");
 		
 		double idf;
-		int cont = 0;
 		for (int i = 1; i < nominalTrain.numAttributes()-1; i++) {
 			idf = Double.parseDouble(nominalTrain.attribute(i).value(1));
 			if (idf > 3) {// Observando los resultados vemos que cuánto más
@@ -56,7 +53,6 @@ public class TfIdf {
 							// en las 3 clases.
 				nominalTrain.deleteAttributeAt(i);
 				i--;
-				cont++;
 			}
 		}
 

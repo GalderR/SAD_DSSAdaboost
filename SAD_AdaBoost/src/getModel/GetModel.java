@@ -1,10 +1,11 @@
-package adaboostGetModel;
+package getModel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import Classifiers.AdaBoost;
-import Classifiers.Clasificador;
-import Classifiers.NBayes;
+
+import classifiers.AdaBoost;
+import classifiers.Clasificador;
+import classifiers.NBayes;
 import preprocesamiento.Data;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
@@ -113,7 +114,7 @@ public class GetModel {
 					System.out.print("Evaluando Clasificador");
 					Clasificador.evaluate(devData);	
 					//Creamos el archivo binario con el modelo
-					SerializationHelper.write(args[2] + "\\" + classifier + ".model", AdaBoost.getClassifier());
+					SerializationHelper.write(args[2] + "\\" + classifier + ".model", Clasificador.getClassifier());
 					System.out.println("Modelo correctamente generado en " + args[2] + "\\" + classifier + ".model");
 				}
 
